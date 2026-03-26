@@ -10,10 +10,10 @@ export function UserDetails({ user }: UserDetailsProps) {
   }
   return (
     <div>
-      <h2>{user.name}</h2>
-      <h4>{user.age}</h4>
-      <h5>{user.role}</h5>
-      <p>{user.city}</p>
+      <h2>Name: {user.name}</h2>
+      <h4>Age: {user.age}</h4>
+      <p>City: {user.city}</p>
+      <p>Role: {user.role}</p>
     </div>
   );
 }
