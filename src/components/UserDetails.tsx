@@ -1,10 +1,10 @@
-import type { User } from "../types/user";
+import type { IUser } from "../types/user";
 
-type UserDetailsProps = {
-  user: User | undefined;
-};
+interface IUserDetailsProps {
+  user: IUser | undefined;
+}
 
-export function UserDetails({ user }: UserDetailsProps) {
+export function UserDetails({ user }: IUserDetailsProps) {
   if (!user) {
     return <p>User does not found</p>;
   }

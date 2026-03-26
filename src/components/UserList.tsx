@@ -1,13 +1,17 @@
-import type { User } from "../types/user";
+import type { IUser } from "../types/user";
 import { UserCard } from "./UserCard";
 
-type UserListProps = {
-  users: User[];
+interface IUserListProps {
+  users: IUser[];
   selectedUserId: number | null;
-  onSelect: (id: number) => void;
-};
+  setSelectedUserId: (id: number) => void;
+}
 
-export function UserList({ users, selectedUserId, onSelect }: UserListProps) {
+export function UserList({
+  users,
+  selectedUserId,
+  setSelectedUserId,
+}: IUserListProps) {
   return (
     <div>
       {users.map((user) => (
@@ -15,7 +19,7 @@ export function UserList({ users, selectedUserId, onSelect }: UserListProps) {
           key={user.id}
           user={user}
           isSelected={user.id === selectedUserId}
-          onSelect={onSelect}
+          setSelectedUserId={setSelectedUserId}
         />
       ))}
     </div>

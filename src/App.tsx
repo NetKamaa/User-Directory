@@ -11,7 +11,7 @@ function App() {
       <UserList
         users={users}
         selectedUserId={selectedUserId}
-        onSelect={setSelectedUserId}
+        setSelectedUserId={setSelectedUserId}
       />
       <UserDetails user={selectedUser} />
     </>

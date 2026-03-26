@@ -1,9 +1,9 @@
-type Role = "admin" | "user" | "moderator";
+type TRole = "admin" | "user" | "moderator";
 
-export type User = {
+export interface IUser {
   id: number;
   name: string;
   age: number;
   city: string;
-  role: Role;
-};
+  role: TRole;
+}

@@ -1,16 +1,20 @@
-import type { User } from "../types/user";
+import type { IUser } from "../types/user";
 
-type UserCardProps = {
-  user: User;
+interface IUserCardProps {
+  user: IUser;
   isSelected: boolean;
-  onSelect: (id: number) => void;
-};
+  setSelectedUserId: (id: number) => void;
+}
 
-export function UserCard({ user, isSelected, onSelect }: UserCardProps) {
+export function UserCard({
+  user,
+  isSelected,
+  setSelectedUserId,
+}: IUserCardProps) {
   return (
     <div
       className={`card ${isSelected ? "selected" : "card"}`}
-      onClick={() => onSelect(user.id)}
+      onClick={() => setSelectedUserId(user.id)}
     >
       <h3>{user.name}</h3>
     </div>
