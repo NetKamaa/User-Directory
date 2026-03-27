@@ -1,7 +1,7 @@
-type TRole = "admin" | "user" | "moderator";
+export type TRole = "admin" | "user" | "moderator";
 
 export interface IUser {
-  id: number;
+  id: string;
   name: string;
   age: number;
   city: string;

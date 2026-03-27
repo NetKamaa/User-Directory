@@ -3,8 +3,8 @@ import { UserCard } from "./UserCard";
 
 interface IUserListProps {
   users: IUser[];
-  selectedUserId: number | null;
-  setSelectedUserId: (id: number) => void;
+  selectedUserId: string | null;
+  setSelectedUserId: (id: string) => void;
   setInputValue: (value: string) => void;
   inputsValue: string;
 }

@@ -3,7 +3,7 @@ import type { IUser } from "../types/user";
 interface IUserCardProps {
   user: IUser;
   isSelected: boolean;
-  setSelectedUserId: (id: number) => void;
+  setSelectedUserId: (id: string) => void;
 }
 
 export function UserCard({
