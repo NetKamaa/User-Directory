@@ -4,7 +4,7 @@ import { SearchBar } from "./components/SearchBar";
 import { UserDetails } from "./components/UserDetails";
 import { UserList } from "./components/UserList";
 import { mockUsers } from "./data/users";
-import type { IUser, TRoleFilter } from "./types/user";
+import type { IUser, TActiveView, TRoleFilter } from "./types/user";
 
 function App() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
@@ -15,6 +15,14 @@ function App() {
 
   const [selectsValue, setSelectValue] = useState<TRoleFilter>("all");
 
+  const [activeView, setActiveView] = useState<TActiveView>("all-users");
+
+  function getActiveView(user: IUser) {
+    if (activeView === "all-users") return true;
+    if (activeView === "admins") return user.role === "admin";
+    if (activeView === "young") return user.age <= 23;
+  }
+
   const selectedUser = users.find((user) => user.id === selectedUserId);
 
   const filteredUser = users.filter((user) => {
@@ -22,8 +30,8 @@ function App() {
       .toLowerCase()
       .includes(inputsValue.toLowerCase());
     const matchesRole = selectsValue === "all" || user.role === selectsValue;
-
-    return matchesQuery && matchesRole;
+    const matchesView = getActiveView(user);
+    return matchesQuery && matchesRole && matchesView;
   });
 
   return (
@@ -40,6 +48,7 @@ function App() {
           inputsValue={inputsValue}
           setSelectValue={setSelectValue}
           selectsValue={selectsValue}
+          setActiveView={setActiveView}
         />
 
         <AddUserForm setUsers={setUsers} />

@@ -9,7 +9,7 @@ export function UserDetails({ user }: IUserDetailsProps) {
     return <p>User not found</p>;
   }
   return (
-    <div className="flex gap-3 border border-violet-600 px-3 py-3">
+    <div className="flex gap-3 border border-violet-600 px-3 py-3 mt-4">
       <h2>Name: {user.name}</h2>
       <h4>Age: {user.age}</h4>
       <p>City: {user.city}</p>

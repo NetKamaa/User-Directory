@@ -1,10 +1,12 @@
-import type { TRoleFilter } from "../types/user";
+import type { TActiveView, TRoleFilter } from "../types/user";
 
 interface ISearchBar {
   setInputValue: (value: string) => void;
   inputsValue: string;
   setSelectValue: (value: TRoleFilter) => void;
   selectsValue: string;
+
+  setActiveView: (value: TActiveView) => void;
 }
 
 export function SearchBar({
@@ -12,6 +14,8 @@ export function SearchBar({
   inputsValue,
   setSelectValue,
   selectsValue,
+
+  setActiveView,
 }: ISearchBar) {
   return (
     <>
@@ -35,6 +39,39 @@ export function SearchBar({
           <option value="user">user</option>
           <option value="moderator">moderator</option>
         </select>
+      </div>
+
+      <div className="flex gap-2 justify-center mt-2">
+        <button
+          className="border-2 border-violet-600 text-center px-2 py-1 rounded-xl"
+          type="button"
+          value="all-users"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            setActiveView(e.currentTarget.value as TActiveView)
+          }
+        >
+          all-users
+        </button>
+        <button
+          className="border-2 border-violet-600 text-center px-2 py-1 rounded-xl"
+          type="button"
+          value="admins"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            setActiveView(e.currentTarget.value as TActiveView)
+          }
+        >
+          admins
+        </button>
+        <button
+          className="border-2 border-violet-600 text-center px-2 py-1 rounded-xl"
+          type="button"
+          value="young"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            setActiveView(e.currentTarget.value as TActiveView)
+          }
+        >
+          young
+        </button>
       </div>
     </>
   );
