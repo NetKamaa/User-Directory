@@ -24,38 +24,43 @@ function AddUserForm({ setUsers }: ISetUsers) {
   }
 
   return (
-    <form onSubmit={(e) => addUser(e)} className="flex">
+    <form
+      onSubmit={(e) => addUser(e)}
+      className="flex mt-4 gap-2 justify-center"
+    >
       <input
-        className="border-2"
+        className="border-2 border-violet-600"
         type="text"
-        value={userName}
+        value={userName.trim()}
         placeholder="name"
         onChange={(e) => setUserName(e.target.value)}
       ></input>
       <input
-        className="border-2"
+        className="border-2 border-violet-600"
         type="text"
-        value={userAge}
+        value={userAge.trim()}
         placeholder="age"
         onChange={(e) => setUserAge(e.target.value)}
       ></input>
       <input
-        className="border-2"
+        className="border-2 border-violet-600"
         type="text"
-        value={userCity}
+        value={userCity.trim()}
         placeholder="city"
         onChange={(e) => setUserCity(e.target.value)}
       ></input>
       <select
-        value={userRole}
+        value={userRole.trim()}
         onChange={(e) => setUserRole(e.target.value)}
-        className="border-2"
+        className="border-2 border-violet-600"
       >
         <option value="admin">admin</option>
         <option value="user">user</option>
         <option value="moderator">moderator</option>
       </select>
-      <button type="submit">Add</button>
+      <button className="bg-violet-600 px-4 py-2 rounded-2xl" type="submit">
+        Add
+      </button>
     </form>
   );
 }

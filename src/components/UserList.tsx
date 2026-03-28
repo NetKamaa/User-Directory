@@ -7,6 +7,8 @@ interface IUserListProps {
   setSelectedUserId: (id: string) => void;
   setInputValue: (value: string) => void;
   inputsValue: string;
+  setSelectValue: (value: string) => void;
+  selectsValue: string;
 }
 
 export function UserList({
@@ -15,6 +17,8 @@ export function UserList({
   setSelectedUserId,
   setInputValue,
   inputsValue,
+  setSelectValue,
+  selectsValue,
 }: IUserListProps) {
   return (
     <>
@@ -28,14 +32,25 @@ export function UserList({
           />
         ))}
       </div>
-      <div>
+      <div className="flex justify-center">
         <input
-          className="flex justify-center"
+          className="border-2 border-violet-600 text-center"
           type="text"
           value={inputsValue}
-          placeholder="input"
+          placeholder="search by name"
           onChange={(e) => setInputValue(e.target.value)}
         ></input>
+      </div>
+      <div>
+        <select
+          value={selectsValue}
+          onChange={(e) => setSelectValue(e.target.value)}
+        >
+          <option value="all">all</option>
+          <option value="admin">admin</option>
+          <option value="user">user</option>
+          <option value="moderator">moderator</option>
+        </select>
       </div>
     </>
   );

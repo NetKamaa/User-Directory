@@ -13,7 +13,7 @@ export function UserCard({
 }: IUserCardProps) {
   return (
     <div
-      className={`card ${isSelected ? "selected" : "card"} border-2 border-yellow-200 cursor-pointer p-2 mb-4`}
+      className={`${isSelected ? "selected" : "card"} border-2 border-yellow-200 cursor-pointer p-2 mb-4`}
       onClick={() => setSelectedUserId(user.id)}
     >
       <h3>{user.name}</h3>
