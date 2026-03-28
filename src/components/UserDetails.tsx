@@ -6,7 +6,7 @@ interface IUserDetailsProps {
 
 export function UserDetails({ user }: IUserDetailsProps) {
   if (!user) {
-    return <p>User does not found</p>;
+    return <p>User not found</p>;
   }
   return (
     <div className="flex gap-3 border border-violet-600 px-3 py-3">

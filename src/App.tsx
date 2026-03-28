@@ -1,9 +1,10 @@
 import { useState } from "react";
 import AddUserForm from "./components/AddUserForm";
+import { SearchBar } from "./components/SearchBar";
 import { UserDetails } from "./components/UserDetails";
 import { UserList } from "./components/UserList";
 import { mockUsers } from "./data/users";
-import type { IUser } from "./types/user";
+import type { IUser, TRole } from "./types/user";
 
 function App() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
@@ -12,15 +13,18 @@ function App() {
 
   const [users, setUsers] = useState<IUser[]>(mockUsers);
 
-  const [selectsValue, setSelectValue] = useState<string>("all");
+  const [selectsValue, setSelectValue] = useState<TRole | "all">("all");
 
   const selectedUser = users.find((user) => user.id === selectedUserId);
 
-  const filteredUser = users.filter((user) =>
-    user.name.toLowerCase().includes(inputsValue.toLowerCase()),
-  );
+  const filteredUser = users.filter((user) => {
+    const matchesQuery = user.name
+      .toLowerCase()
+      .includes(inputsValue.toLowerCase());
+    const matchesRole = selectsValue === "all" || user.role === selectsValue;
 
-  const selectedRole = users.find((user) => user.role === selectsValue);
+    return matchesQuery && matchesRole;
+  });
 
   return (
     <>
@@ -29,6 +33,9 @@ function App() {
           users={filteredUser}
           selectedUserId={selectedUserId}
           setSelectedUserId={setSelectedUserId}
+        />
+
+        <SearchBar
           setInputValue={setInputValue}
           inputsValue={inputsValue}
           setSelectValue={setSelectValue}

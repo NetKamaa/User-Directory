@@ -9,18 +9,32 @@ function AddUserForm({ setUsers }: ISetUsers) {
   const [userName, setUserName] = useState<string>("");
   const [userAge, setUserAge] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
-  const [userRole, setUserRole] = useState<string>("user");
+  const [userRole, setUserRole] = useState<TRole>("user");
 
   function addUser(e: React.SubmitEvent) {
     e.preventDefault();
+
+    const trimmedName = userName.trim();
+    const trimmedCity = userCity.trim();
+    const parsedAge = Number(userAge);
+
+    if (!trimmedName || !trimmedCity || Number.isNaN(parsedAge)) {
+      return;
+    }
+
     const user: IUser = {
       id: crypto.randomUUID(),
-      name: userName,
-      age: Number(userAge),
-      city: userCity,
+      name: trimmedName,
+      age: parsedAge,
+      city: trimmedCity,
       role: userRole as TRole,
     };
     setUsers((prev) => [...prev, user]);
+
+    setUserName("");
+    setUserAge("");
+    setUserCity("");
+    setUserRole("user");
   }
 
   return (
@@ -31,27 +45,27 @@ function AddUserForm({ setUsers }: ISetUsers) {
       <input
         className="border-2 border-violet-600"
         type="text"
-        value={userName.trim()}
+        value={userName}
         placeholder="name"
         onChange={(e) => setUserName(e.target.value)}
       ></input>
       <input
         className="border-2 border-violet-600"
         type="text"
-        value={userAge.trim()}
+        value={userAge}
         placeholder="age"
         onChange={(e) => setUserAge(e.target.value)}
       ></input>
       <input
         className="border-2 border-violet-600"
         type="text"
-        value={userCity.trim()}
+        value={userCity}
         placeholder="city"
         onChange={(e) => setUserCity(e.target.value)}
       ></input>
       <select
-        value={userRole.trim()}
-        onChange={(e) => setUserRole(e.target.value)}
+        value={userRole}
+        onChange={(e) => setUserRole(e.target.value as TRole)}
         className="border-2 border-violet-600"
       >
         <option value="admin">admin</option>
