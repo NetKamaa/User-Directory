@@ -1,9 +1,9 @@
-import type { TRole } from "../types/user";
+import type { TRoleFilter } from "../types/user";
 
 interface ISearchBar {
   setInputValue: (value: string) => void;
   inputsValue: string;
-  setSelectValue: (value: TRole | "all") => void;
+  setSelectValue: (value: TRoleFilter) => void;
   selectsValue: string;
 }
 
@@ -28,7 +28,7 @@ export function SearchBar({
         <select
           className="border-2 border-violet-600 text-center"
           value={selectsValue}
-          onChange={(e) => setSelectValue(e.target.value as TRole | "all")}
+          onChange={(e) => setSelectValue(e.target.value as TRoleFilter)}
         >
           <option value="all">all</option>
           <option value="admin">admin</option>

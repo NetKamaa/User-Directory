@@ -4,7 +4,7 @@ import { SearchBar } from "./components/SearchBar";
 import { UserDetails } from "./components/UserDetails";
 import { UserList } from "./components/UserList";
 import { mockUsers } from "./data/users";
-import type { IUser, TRole } from "./types/user";
+import type { IUser, TRoleFilter } from "./types/user";
 
 function App() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
@@ -13,7 +13,7 @@ function App() {
 
   const [users, setUsers] = useState<IUser[]>(mockUsers);
 
-  const [selectsValue, setSelectValue] = useState<TRole | "all">("all");
+  const [selectsValue, setSelectValue] = useState<TRoleFilter>("all");
 
   const selectedUser = users.find((user) => user.id === selectedUserId);
 

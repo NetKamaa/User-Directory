@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { IUser, TRole } from "../types/user";
+import type { IUser, TRoleFilter } from "../types/user";
 
 interface ISetUsers {
   setUsers: React.Dispatch<React.SetStateAction<IUser[]>>;
@@ -9,7 +9,7 @@ function AddUserForm({ setUsers }: ISetUsers) {
   const [userName, setUserName] = useState<string>("");
   const [userAge, setUserAge] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
-  const [userRole, setUserRole] = useState<TRole>("user");
+  const [userRole, setUserRole] = useState<TRoleFilter>("user");
 
   function addUser(e: React.SubmitEvent) {
     e.preventDefault();
@@ -27,7 +27,7 @@ function AddUserForm({ setUsers }: ISetUsers) {
       name: trimmedName,
       age: parsedAge,
       city: trimmedCity,
-      role: userRole as TRole,
+      role: userRole as TRoleFilter,
     };
     setUsers((prev) => [...prev, user]);
 
@@ -65,7 +65,7 @@ function AddUserForm({ setUsers }: ISetUsers) {
       ></input>
       <select
         value={userRole}
-        onChange={(e) => setUserRole(e.target.value as TRole)}
+        onChange={(e) => setUserRole(e.target.value as TRoleFilter)}
         className="border-2 border-violet-600"
       >
         <option value="admin">admin</option>
