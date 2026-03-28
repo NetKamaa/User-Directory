@@ -26,7 +26,7 @@ function App() {
     <>
       <div className="m-4">
         <UserList
-          users={users}
+          users={filteredUser}
           selectedUserId={selectedUserId}
           setSelectedUserId={setSelectedUserId}
           setInputValue={setInputValue}
@@ -38,10 +38,6 @@ function App() {
         <AddUserForm setUsers={setUsers} />
 
         <UserDetails user={selectedUser} />
-        <UserDetails user={selectedRole}></UserDetails>
-        {filteredUser.map((user) => (
-          <UserDetails key={user.id} user={user}></UserDetails>
-        ))}
       </div>
     </>
   );
