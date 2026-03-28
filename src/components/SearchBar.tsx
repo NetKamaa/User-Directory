@@ -4,7 +4,7 @@ interface ISearchBar {
   setInputValue: (value: string) => void;
   inputsValue: string;
   setSelectValue: (value: TRoleFilter) => void;
-  selectsValue: string;
+  selectsValue: TRoleFilter;
 
   setActiveView: (value: TActiveView) => void;
 }
