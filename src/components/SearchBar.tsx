@@ -1,38 +1,42 @@
 import type { TActiveView, TRoleFilter } from "../types/user";
 
 interface ISearchBar {
-  setInputValue: (value: string) => void;
-  inputsValue: string;
-  setSelectValue: (value: TRoleFilter) => void;
-  selectsValue: TRoleFilter;
-
-  setActiveView: (value: TActiveView) => void;
+  query: string;
+  roleFilter: TRoleFilter;
+  onQueryChange: (value: string) => void;
+  onRoleChange: (value: TRoleFilter) => void;
+  onViewChange: (value: TActiveView) => void;
 }
 
 export function SearchBar({
-  setInputValue,
-  inputsValue,
-  setSelectValue,
-  selectsValue,
-
-  setActiveView,
+  query,
+  roleFilter,
+  onQueryChange,
+  onRoleChange,
+  onViewChange,
 }: ISearchBar) {
+  function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
+    onQueryChange(e.target.value);
+  }
+  function handleRoleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    onRoleChange(e.target.value as TRoleFilter);
+  }
   return (
     <>
       <div className="flex justify-center">
         <input
           className="border-2 border-violet-600 text-center"
           type="text"
-          value={inputsValue}
+          value={query}
           placeholder="search by name"
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={handleQueryChange}
         ></input>
       </div>
       <div className="flex justify-center mt-2">
         <select
           className="border-2 border-violet-600 text-center"
-          value={selectsValue}
-          onChange={(e) => setSelectValue(e.target.value as TRoleFilter)}
+          value={roleFilter}
+          onChange={handleRoleChange}
         >
           <option value="all">all</option>
           <option value="admin">admin</option>
@@ -46,9 +50,7 @@ export function SearchBar({
           className="border-2 border-violet-600 text-center px-2 py-1 rounded-xl"
           type="button"
           value="all-users"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            setActiveView(e.currentTarget.value as TActiveView)
-          }
+          onClick={() => onViewChange("all-users")}
         >
           all-users
         </button>
@@ -56,9 +58,7 @@ export function SearchBar({
           className="border-2 border-violet-600 text-center px-2 py-1 rounded-xl"
           type="button"
           value="admins"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            setActiveView(e.currentTarget.value as TActiveView)
-          }
+          onClick={() => onViewChange("admins")}
         >
           admins
         </button>
@@ -66,9 +66,7 @@ export function SearchBar({
           className="border-2 border-violet-600 text-center px-2 py-1 rounded-xl"
           type="button"
           value="young"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            setActiveView(e.currentTarget.value as TActiveView)
-          }
+          onClick={() => onViewChange("young")}
         >
           young
         </button>
