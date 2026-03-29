@@ -17,10 +17,11 @@ function App() {
 
   const [activeView, setActiveView] = useState<TActiveView>("all-users");
 
-  function getActiveView(user: IUser) {
+  function getActiveView(user: IUser): boolean {
     if (activeView === "all-users") return true;
     if (activeView === "admins") return user.role === "admin";
     if (activeView === "young") return user.age <= 23;
+    return true;
   }
 
   function deleteUser(userId: string) {

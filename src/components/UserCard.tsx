@@ -21,7 +21,14 @@ export function UserCard({
       >
         <h3>{user.name}</h3>
       </div>
-      <button onClick={() => deleteUser(user.id)}>delete</button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          deleteUser(user.id);
+        }}
+      >
+        delete
+      </button>
     </>
   );
 }
