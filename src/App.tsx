@@ -9,11 +9,11 @@ import type { IUser, TActiveView, TRoleFilter } from "./types/user";
 function App() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
-  const [inputsValue, setInputValue] = useState<string>("");
+  const [query, setQuery] = useState<string>("");
 
   const [users, setUsers] = useState<IUser[]>(mockUsers);
 
-  const [selectsValue, setSelectValue] = useState<TRoleFilter>("all");
+  const [roleFilter, setRoleFilter] = useState<TRoleFilter>("all");
 
   const [activeView, setActiveView] = useState<TActiveView>("all-users");
 
@@ -24,21 +24,39 @@ function App() {
     return true;
   }
 
-  function deleteUser(userId: string) {
-    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+  function handleAddUser(newUser: IUser): void {
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+  }
 
-    if (selectedUserId === userId) {
+  function handleSelect(id: string): void {
+    setSelectedUserId(id);
+  }
+
+  function handleDelete(id: string): void {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+
+    if (selectedUserId === id) {
       setSelectedUserId(null);
     }
   }
 
+  function handleQueryChange(value: string): void {
+    setQuery(value);
+  }
+
+  function handleRoleChange(value: TRoleFilter): void {
+    setRoleFilter(value);
+  }
+
+  function handleViewChange(value: TActiveView): void {
+    setActiveView(value);
+  }
+
   const selectedUser = users.find((user) => user.id === selectedUserId);
 
-  const filteredUser = users.filter((user) => {
-    const matchesQuery = user.name
-      .toLowerCase()
-      .includes(inputsValue.toLowerCase());
-    const matchesRole = selectsValue === "all" || user.role === selectsValue;
+  const filteredUsers = users.filter((user) => {
+    const matchesQuery = user.name.toLowerCase().includes(query.toLowerCase());
+    const matchesRole = roleFilter === "all" || user.role === roleFilter;
     const matchesView = getActiveView(user);
     return matchesQuery && matchesRole && matchesView;
   });
@@ -47,21 +65,21 @@ function App() {
     <>
       <div className="m-4">
         <UserList
-          users={filteredUser}
+          users={filteredUsers}
           selectedUserId={selectedUserId}
-          setSelectedUserId={setSelectedUserId}
-          deleteUser={deleteUser}
+          onSelect={handleSelect}
+          onDelete={handleDelete}
         />
 
         <SearchBar
-          setInputValue={setInputValue}
-          inputsValue={inputsValue}
-          setSelectValue={setSelectValue}
-          selectsValue={selectsValue}
-          setActiveView={setActiveView}
+          query={query}
+          roleFilter={roleFilter}
+          onQueryChange={handleQueryChange}
+          onRoleChange={handleRoleChange}
+          onViewChange={handleViewChange}
         />
 
-        <AddUserForm setUsers={setUsers} />
+        <AddUserForm onAddUser={handleAddUser} />
 
         <UserDetails user={selectedUser} />
       </div>

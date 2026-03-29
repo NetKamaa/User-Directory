@@ -4,15 +4,15 @@ import { UserCard } from "./UserCard";
 interface IUserListProps {
   users: IUser[];
   selectedUserId: string | null;
-  setSelectedUserId: (id: string) => void;
-  deleteUser: (id: string) => void;
+  onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export function UserList({
   users,
   selectedUserId,
-  setSelectedUserId,
-  deleteUser,
+  onSelect,
+  onDelete,
 }: IUserListProps) {
   return (
     <div className="flex justify-center gap-5">
@@ -21,8 +21,8 @@ export function UserList({
           key={user.id}
           user={user}
           isSelected={user.id === selectedUserId}
-          setSelectedUserId={setSelectedUserId}
-          deleteUser={deleteUser}
+          onSelect={onSelect}
+          onDelete={onDelete}
         />
       ))}
     </div>

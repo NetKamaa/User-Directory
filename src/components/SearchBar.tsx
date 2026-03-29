@@ -15,7 +15,7 @@ export function SearchBar({
   onRoleChange,
   onViewChange,
 }: ISearchBar) {
-  function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     onQueryChange(e.target.value);
   }
   function handleRoleChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -29,7 +29,7 @@ export function SearchBar({
           type="text"
           value={query}
           placeholder="search by name"
-          onChange={handleQueryChange}
+          onChange={handleInputChange}
         ></input>
       </div>
       <div className="flex justify-center mt-2">

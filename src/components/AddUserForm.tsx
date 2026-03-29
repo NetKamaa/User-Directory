@@ -1,11 +1,11 @@
 import { useState } from "react";
 import type { IUser, TRole, TStatus } from "../types/user";
 
-interface ISetUsers {
-  setUsers: React.Dispatch<React.SetStateAction<IUser[]>>;
-}
+type TAddUserFormProps = {
+  onAddUser: (user: IUser) => void;
+};
 
-function AddUserForm({ setUsers }: ISetUsers) {
+function AddUserForm({ onAddUser }: TAddUserFormProps) {
   const [userName, setUserName] = useState<string>("");
   const [userAge, setUserAge] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
@@ -39,7 +39,7 @@ function AddUserForm({ setUsers }: ISetUsers) {
       city: trimmedCity,
       role: userRole,
     };
-    setUsers((prev) => [...prev, user]);
+    onAddUser(user);
     setStatus("success");
 
     setUserName("");
