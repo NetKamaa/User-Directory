@@ -15,20 +15,23 @@ export function UserCard({
 }: IUserCardProps) {
   return (
     <>
-      <div
-        className={`${isSelected ? "selected" : "card"} border-2 border-yellow-200 cursor-pointer p-2 mb-4`}
-        onClick={() => onSelect(user.id)}
-      >
-        <h3>{user.name}</h3>
+      <div className="flex flex-col mt-2">
+        <div
+          className={`${isSelected ? "border-black" : "border-gray-300"} border-2 rounded-xl w-32 shadow-sm hover:shadow-md transition  cursor-pointer p-3 mb-2 text-center`}
+          onClick={() => onSelect(user.id)}
+        >
+          <h3 className="font-medium">{user.name}</h3>
+        </div>
+        <button
+          className="border border-red-600 hover:border-red-700 cursor-pointer mt-2 rounded-2xl text-sm"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(user.id);
+          }}
+        >
+          delete
+        </button>
       </div>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onDelete(user.id);
-        }}
-      >
-        delete
-      </button>
     </>
   );
 }

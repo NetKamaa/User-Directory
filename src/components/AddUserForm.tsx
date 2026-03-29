@@ -52,24 +52,24 @@ function AddUserForm({ onAddUser }: TAddUserFormProps) {
     <>
       <form
         onSubmit={(e) => addUser(e)}
-        className="flex mt-4 gap-2 justify-center"
+        className="flex flex-col gap-3 mt-6 max-w-md mx-auto"
       >
         <input
-          className="border-2 border-violet-600"
+          className="border border-gray-700 rounded-lg px-4 py-2 w-full"
           type="text"
           value={userName}
           placeholder="name"
           onChange={(e) => setUserName(e.target.value)}
         ></input>
         <input
-          className="border-2 border-violet-600"
+          className="border border-gray-700 rounded-lg px-4 py-2 w-full"
           type="text"
           value={userAge}
           placeholder="age"
           onChange={(e) => setUserAge(e.target.value)}
         ></input>
         <input
-          className="border-2 border-violet-600"
+          className="border border-gray-700 rounded-lg px-4 py-2 w-full"
           type="text"
           value={userCity}
           placeholder="city"
@@ -78,13 +78,16 @@ function AddUserForm({ onAddUser }: TAddUserFormProps) {
         <select
           value={userRole}
           onChange={(e) => setUserRole(e.target.value as TRole)}
-          className="border-2 border-violet-600"
+          className="border border-gray-700 rounded-lg px-4 py-2 w-full"
         >
           <option value="admin">admin</option>
           <option value="user">user</option>
           <option value="moderator">moderator</option>
         </select>
-        <button className="bg-violet-600 px-4 py-2 rounded-2xl" type="submit">
+        <button
+          className="bg-violet-600 text-white py-2 rounded-lg hover:bg-violet-700 transition"
+          type="submit"
+        >
           Add
         </button>
       </form>

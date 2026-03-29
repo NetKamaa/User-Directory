@@ -15,7 +15,7 @@ export function UserList({
   onDelete,
 }: IUserListProps) {
   return (
-    <div className="flex justify-center gap-5">
+    <div className="flex flex-wrap justify-center gap-3">
       {users.map((user) => (
         <UserCard
           key={user.id}
