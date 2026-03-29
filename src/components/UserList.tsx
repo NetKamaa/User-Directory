@@ -5,12 +5,14 @@ interface IUserListProps {
   users: IUser[];
   selectedUserId: string | null;
   setSelectedUserId: (id: string) => void;
+  deleteUser: (id: string) => void;
 }
 
 export function UserList({
   users,
   selectedUserId,
   setSelectedUserId,
+  deleteUser,
 }: IUserListProps) {
   return (
     <div className="flex justify-center gap-5">
@@ -20,6 +22,7 @@ export function UserList({
           user={user}
           isSelected={user.id === selectedUserId}
           setSelectedUserId={setSelectedUserId}
+          deleteUser={deleteUser}
         />
       ))}
     </div>

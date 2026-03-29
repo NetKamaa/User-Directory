@@ -23,6 +23,14 @@ function App() {
     if (activeView === "young") return user.age <= 23;
   }
 
+  function deleteUser(userId: string) {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+
+    if (selectedUserId === userId) {
+      setSelectedUserId(null);
+    }
+  }
+
   const selectedUser = users.find((user) => user.id === selectedUserId);
 
   const filteredUser = users.filter((user) => {
@@ -41,6 +49,7 @@ function App() {
           users={filteredUser}
           selectedUserId={selectedUserId}
           setSelectedUserId={setSelectedUserId}
+          deleteUser={deleteUser}
         />
 
         <SearchBar
